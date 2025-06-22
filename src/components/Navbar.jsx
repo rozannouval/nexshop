@@ -1,48 +1,95 @@
 import Link from "next/link";
 import React from "react";
 import { Input } from "./ui/input";
-import { Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const menuLink = [
     {
-      id: 1,
       linkTitle: "Beranda",
       linkHref: "/",
     },
     {
-      id: 2,
       linkTitle: "Rilis Terbaru",
       linkHref: "/rilis-terbaru",
     },
     {
-      id: 3,
       linkTitle: "Produk Terbaik",
       linkHref: "/produk-terbaik",
     },
     {
-      id: 4,
       linkTitle: "Pembayaran",
       linkHref: "/pembayaran",
     },
   ];
   return (
-    <nav className="sticky top-0 left-0 z-[999] w-full p-4 bg-white font-medium">
+    <nav className="sticky top-0 left-0 z-[99] w-full p-4 bg-white font-medium">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="hidden md:flex items-center gap-x-1">
+        <div className="block xl:hidden mr-2">
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="cursor-pointer flex items-center gap-2">
+                <Menu /> Menu
+              </button>
+            </SheetTrigger>
+            <SheetContent className="z-[999] p-4" side="left">
+              <SheetTitle>NEXSHOP</SheetTitle>
+              <div>
+                <p className="text-stone-500">Menu</p>
+                <div className="flex flex-col mt-2">
+                  {menuLink.map((menu, index) => (
+                    <Link
+                      key={index}
+                      href={menu.linkHref}
+                      className="text-lg font-medium hover:bg-stone-100 p-2"
+                    >
+                      {menu.linkTitle}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <SheetFooter className="md:hidden">
+                <Link
+                  href={"/masuk"}
+                  className="bg-stone-800 text-white p-2 text-center font-bold text-lg rounded-md hover:opacity-80 transition-all"
+                >
+                  Masuk
+                </Link>
+                <Link
+                  href={"/daftar"}
+                  className="p-2 text-center font-bold text-lg rounded-md hover:bg-stone-100 transition-all"
+                >
+                  Tidak Punya Akun?
+                </Link>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        <div className="hidden xl:flex items-center gap-x-1">
           <Link href="/" className="mr-8">
             NEXSHOP
           </Link>
-          {menuLink.map((item) => (
+          {menuLink.map((menu, index) => (
             <Link
-              key={item.id}
-              href={item.linkHref}
+              key={index}
+              href={menu.linkHref}
               className="py-1 px-3 hover:bg-stone-100 rounded-md transition-all"
             >
-              {item.linkTitle}
+              {menu.linkTitle}
             </Link>
           ))}
         </div>
+
         <div className="flex items-center justify-center gap-2">
           <div className="relative rounded-md mr-2">
             <Search className="absolute left-3 top-2 w-5 h-5 text-gray-400" />
@@ -52,7 +99,7 @@ const Navbar = () => {
               className="pl-10 border-0 shadow-none focus:outline-0 focus-visible:ring-0 bg-stone-100 text-stone-500"
             />
           </div>
-          <div className="flex items-center ">
+          <div className="hidden md:flex items-center gap-2">
             <Link
               href="/masuk"
               className="bg-stone-800 text-white px-3 py-1 rounded-md hover:opacity-80 transition-all"

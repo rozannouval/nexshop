@@ -89,7 +89,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-[100dvh] container mx-auto flex flex-col p-8">
+    <main className="min-h-[100dvh] container mx-auto flex flex-col p-4 md:p-8">
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
@@ -137,7 +137,7 @@ export default function Home() {
 
         <div className="my-8">
           <h3 className="text-xl font-bold">Rekomendasi Produk</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-8 my-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 xl:gap-8 my-4">
             {isLoading ? <div>Loading...</div> : renderedProductCard()}
           </div>
         </div>
