@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 import { Menu, Search } from "lucide-react";
 import {
   Sheet,
@@ -8,8 +8,9 @@ import {
   SheetFooter,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
-import { Button } from "./ui/button";
+} from "../ui/sheet";
+import { Button } from "../ui/button";
+import InputSearch from "./inputSearch";
 
 const Navbar = () => {
   const menuLink = [
@@ -91,14 +92,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center justify-center gap-2">
-          <div className="relative rounded-md mr-2">
-            <Search className="absolute left-3 top-2 w-5 h-5 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Cari barang..."
-              className="pl-10 border-0 shadow-none focus:outline-0 focus-visible:ring-0 bg-stone-100 text-stone-500"
-            />
-          </div>
+          <InputSearch />
           <div className="hidden md:flex items-center gap-2">
             <Link
               href="/masuk"

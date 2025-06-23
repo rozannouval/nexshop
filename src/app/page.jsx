@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import CardProduct from "@/components/CardProduct";
 import {
   Carousel,
   CarouselContent,
@@ -9,7 +9,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useFetchProducts } from "@/features/useFetchProducts";
-import { PriceFormatter } from "@/lib/price-formatter";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 
@@ -64,30 +63,6 @@ export default function Home() {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   const { data, isLoading } = useFetchProducts();
 
-  const renderedProductCard = () => {
-    return data.map((product) => {
-      return (
-        <a
-          href={`/product/${product.id}`}
-          key={product.id}
-          className="border border-stone-200 rounded-xl flex flex-col justify-center"
-        >
-          <div className="aspect-[1/1] p-1 overflow-hidden w-full rounded-t-xl flex justify-center items-center">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-contain rounded-t-xl"
-            />
-          </div>
-          <div className="p-4">
-            <p className="mt-2 mb-2 text-lg">{product.name}</p>
-            <p className="font-semibold">{PriceFormatter(product.price)}</p>
-          </div>
-        </a>
-      );
-    });
-  };
-
   return (
     <main className="min-h-[100dvh] container mx-auto flex flex-col p-4 md:p-8">
       <Carousel
@@ -138,7 +113,7 @@ export default function Home() {
         <div className="my-8">
           <h3 className="text-xl font-bold">Rekomendasi Produk</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 xl:gap-8 my-4">
-            {isLoading ? <div>Loading...</div> : renderedProductCard()}
+            {isLoading ? <div>Loading...</div> : <CardProduct dataProduct={data} />}
           </div>
         </div>
       </section>
