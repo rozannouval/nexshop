@@ -1,7 +1,5 @@
 import Link from "next/link";
-import React from "react";
-import { Input } from "../ui/input";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -9,7 +7,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { Button } from "../ui/button";
 import InputSearch from "./inputSearch";
 
 const Navbar = () => {

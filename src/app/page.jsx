@@ -8,30 +8,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useFetchProducts } from "@/features/useFetchProducts";
+import { useFetchBanners } from "@/features/useFetchBanners";
+import { useFetchProducts } from "@/features/useProducts";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
-
-const carouselImage = [
-  {
-    id: 1,
-    imageSrc:
-      "https://cdn2.uzone.id//assets/uploads/UZONEINC/gadget/Asus/Asus_ROG_Zephyrus_Duo_16/ROG-Zephyrus-Duo-16-headline.jpg",
-    imageAlt: "banner-asus-rog-zephyrus",
-  },
-  {
-    id: 2,
-    imageSrc:
-      "https://www.alezay.com/wp-content/uploads/2022/06/SONY-XPERIA-10-IV-5G-BANNER-ALEZAY-KUWAIT.jpg",
-    imageAlt: "banner-sony-xperia-10-IV",
-  },
-  {
-    id: 3,
-    imageSrc:
-      "https://bumilindo.com/wp-content/uploads/2023/01/Copy-of-Bumilindo-Kategori-Banner-Kategori-Tab-A-Desktop.png",
-    imageAlt: "banner-tablet-samsung-galaxy-a9",
-  },
-];
+import Loading from "./loading";
 
 const categoryOption = [
   {
@@ -61,7 +42,10 @@ const categoryOption = [
 
 export default function Home() {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
-  const { data, isLoading } = useFetchProducts();
+  const { data: productData, isLoading: productLoading } = useFetchProducts();
+  const { data: bannersData, isLoading: bannerLoading } = useFetchBanners();
+
+  if (bannerLoading) return <Loading />;
 
   return (
     <main className="min-h-[100dvh] container mx-auto flex flex-col p-4 md:p-8">
@@ -71,11 +55,11 @@ export default function Home() {
         onMouseLeave={plugin.current.play}
       >
         <CarouselContent>
-          {carouselImage.map((item) => (
-            <CarouselItem key={item.id} className="rounded-xl">
+          {bannersData.map((banner) => (
+            <CarouselItem key={banner.id} className="rounded-xl">
               <img
-                src={item.imageSrc}
-                alt={item.imageAlt}
+                src={banner.image}
+                alt={banner.alt}
                 className="w-full h-48 md:h-96 object-cover rounded-xl"
               />
             </CarouselItem>
@@ -113,7 +97,11 @@ export default function Home() {
         <div className="my-8">
           <h3 className="text-xl font-bold">Rekomendasi Produk</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 xl:gap-8 my-4">
-            {isLoading ? <div>Loading...</div> : <CardProduct dataProduct={data} />}
+            {productLoading ? (
+              <div>Loading...</div>
+            ) : (
+              <CardProduct productData={productData} />
+            )}
           </div>
         </div>
       </section>

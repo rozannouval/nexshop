@@ -1,10 +1,10 @@
 import { PriceFormatter } from "@/lib/price-formatter";
 
-const CardProduct = ({ dataProduct }) => {
-  return dataProduct.map((product) => {
+const CardProduct = ({ productData }) => {
+  return productData.map((product) => {
     return (
       <a
-        href={`/product/${product.id}`}
+        href={`/products/${product.id}`}
         key={product.id}
         className="border border-stone-200 rounded-xl flex flex-col justify-center"
       >
