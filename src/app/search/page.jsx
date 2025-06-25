@@ -3,11 +3,14 @@
 import CardProduct from "@/components/CardProduct";
 import { useSearchProduct } from "@/features/useProducts";
 import { useSearchParams } from "next/navigation";
+import Loading from "../loading";
 
 function SearchPage() {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
   const { data, isLoading, isError } = useSearchProduct(q);
+
+  if (isLoading) return <Loading />
 
   if (isError)
     return (
@@ -22,7 +25,7 @@ function SearchPage() {
         Hasil dari pencarian <span className="font-bold">{q}</span>...
       </h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 xl:gap-8 my-4">
-        {isLoading ? <div>Loading...</div> : <CardProduct productData={data} />}
+        <CardProduct productData={data} />
       </div>
     </main>
   );

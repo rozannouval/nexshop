@@ -16,7 +16,7 @@ const CardProduct = ({ productData }) => {
           />
         </div>
         <div className="p-4">
-          <p className="mt-2 mb-2 text-lg">{product.name}</p>
+          <p className="mt-2 mb-2 text-lg line-clamp-2">{product.name}</p>
           <p className="font-semibold">{PriceFormatter(product.price)}</p>
         </div>
       </a>

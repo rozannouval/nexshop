@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 
+// useQuery untuk method GET atau untuk fetchingan data dari API
 export const useFetchProducts = () => {
   return useQuery({
     queryKey: ["products"],
