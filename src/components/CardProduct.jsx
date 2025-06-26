@@ -1,7 +1,7 @@
 import { PriceFormatter } from "@/lib/price-formatter";
 
 const CardProduct = ({ productData }) => {
-  return productData.map((product) => {
+  return productData?.map((product) => {
     return (
       <a
         href={`/products/${product.id}`}

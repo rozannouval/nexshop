@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
@@ -10,6 +10,7 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import InputSearch from "./inputSearch";
+import { useState } from "react";
 
 const Navbar = () => {
   const menuLink = [
@@ -30,11 +31,16 @@ const Navbar = () => {
       linkHref: "/pembayaran",
     },
   ];
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => setOpen(false);
+
   return (
     <nav className="md:sticky top-0 left-0 z-[99] w-full p-4 bg-white font-medium">
       <div className="container mx-auto flex justify-between items-center">
         <div className="block xl:hidden mr-2">
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <button className="cursor-pointer flex items-center gap-2">
                 <Menu /> Menu
@@ -49,6 +55,7 @@ const Navbar = () => {
                     <Link
                       key={index}
                       href={menu.linkHref}
+                      onClick={handleClose}
                       className="text-lg font-medium hover:bg-stone-100 p-2"
                     >
                       {menu.linkTitle}
@@ -60,12 +67,14 @@ const Navbar = () => {
               <SheetFooter className="md:hidden">
                 <Link
                   href={"/masuk"}
+                  onClick={handleClose}
                   className="bg-stone-800 text-white p-2 text-center font-bold text-lg rounded-md hover:opacity-80 transition-all"
                 >
                   Masuk
                 </Link>
                 <Link
                   href={"/daftar"}
+                  onClick={handleClose}
                   className="p-2 text-center font-bold text-lg rounded-md hover:bg-stone-100 transition-all"
                 >
                   Tidak Punya Akun?

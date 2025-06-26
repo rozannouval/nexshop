@@ -55,7 +55,7 @@ export default function Home() {
         onMouseLeave={plugin.current.play}
       >
         <CarouselContent>
-          {bannersData.map((banner) => (
+          {bannersData?.map((banner) => (
             <CarouselItem key={banner.id} className="rounded-xl">
               <img
                 src={banner.image}
