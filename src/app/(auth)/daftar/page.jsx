@@ -42,7 +42,7 @@ function RegisterPage() {
   return (
     <main className="min-h-[85dvh] flex items-center justify-center px-4 bg-white">
       <div className="flex flex-col items-center w-full max-w-sm lg:max-w-md border-stone-200 border-2 rounded-lg">
-        <div className="px-4 py-4 flex flex-col items-center gap-4 w-full text-center md:text-start">
+        <div className="px-4 md:p-6 py-4 flex flex-col items-center gap-4 w-full text-center md:text-start">
           <h3 className="text-stone-800 text-2xl font-bold">
             Membuat akun baru
           </h3>

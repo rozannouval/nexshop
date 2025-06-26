@@ -46,7 +46,7 @@ const ProductDetailClient = ({ productId }) => {
           <img src={product.image} alt={product.name} className="w-96 h-96" />
         </div>
         <div className="md:py-8 md:px-4 flex flex-col gap-4">
-          <h2 className="font-medium text-2xl md:text-4xl">{product.name}</h2>
+          <h2 className="font-medium text-2xl">{product.name}</h2>
           <p className="text-lg text-justify">{product.description}</p>
         </div>
       </div>
