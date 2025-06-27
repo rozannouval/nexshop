@@ -1,6 +1,6 @@
 "use client";
 
-import CardProduct from "@/components/CardProduct";
+import CardProduct from "@/components/Cards/CardProduct";
 import {
   Carousel,
   CarouselContent,
@@ -13,39 +13,59 @@ import { useFetchProducts } from "@/features/useProducts";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import Loading from "./loading";
+import Link from "next/link";
+import CardsLayout from "@/components/Cards/CardsLayout";
 
 const categoryOption = [
   {
     name: "Laptop",
-    href: "/laptop",
+    slug: "laptop",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/008/534/666/small/laptop-computer-mockup-cutout-file-png.png",
   },
   {
     name: "Tablet",
-    href: "/tablet",
+    slug: "tablet",
     image:
       "https://images.vexels.com/media/users/3/149479/isolated/preview/ca8b29b4c9eb4b79c0247e168683d470-tablet-inclined.png",
   },
   {
     name: "Handphone",
-    href: "/handphone",
+    slug: "handphone",
     image:
       "https://static.vecteezy.com/system/resources/previews/039/137/323/non_2x/detailed-isometric-style-photo-of-smartphone-without-background-template-for-mockup-png.png",
   },
   {
     name: "Monitor",
-    href: "/monitor",
+    slug: "monitor",
     image: "/icon/png/monitor.png",
   },
 ];
 
 export default function Home() {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
-  const { data: productData, isLoading: productLoading } = useFetchProducts();
-  const { data: bannersData, isLoading: bannerLoading } = useFetchBanners();
 
-  if (bannerLoading) return <Loading />;
+  const {
+    data: products,
+    isLoading: productLoading,
+    isError: productError,
+  } = useFetchProducts();
+  const {
+    data: banners,
+    isLoading: bannerLoading,
+    isError: bannerError,
+  } = useFetchBanners();
+
+  const isPageLoading = bannerLoading || productLoading;
+
+  if (isPageLoading) return <Loading />;
+
+  if (productError || bannerError)
+    return (
+      <div className="text-center text-red-500 py-10">
+        <p>Mohon maaf, data gagal dimuat. Silahkan coba lagi.</p>
+      </div>
+    );
 
   return (
     <main className="min-h-[100dvh] container mx-auto flex flex-col p-4 md:p-8">
@@ -55,7 +75,7 @@ export default function Home() {
         onMouseLeave={plugin.current.play}
       >
         <CarouselContent>
-          {bannersData?.map((banner) => (
+          {banners?.map((banner) => (
             <CarouselItem key={banner.id} className="rounded-xl">
               <img
                 src={banner.image}
@@ -75,10 +95,10 @@ export default function Home() {
           <h3 className="text-xl font-bold">Kategori Pilihan</h3>
           <div className="grid grid-cols-4 my-4 gap-x-4 md:gap-x-12">
             {categoryOption.map((category, index) => (
-              <a
+              <Link
                 key={index}
-                href={category.href}
-                className="flex flex-col items-center justify-center hover:bg-stone-50 ring-1 ring-stone-200 rounded-sm md:rounded-xl p-2 md:p-4 transition-all"
+                href={`/products/category/${category.slug}`}
+                className="flex flex-col items-center justify-center hover:bg-stone-100 ring-1 ring-stone-200 rounded-sm md:rounded-xl p-2 md:p-4 transition-all"
               >
                 <img
                   src={category.image}
@@ -88,7 +108,7 @@ export default function Home() {
                 <p className="text-xs md:text-lg md:font-medium">
                   {category.name}
                 </p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -96,13 +116,15 @@ export default function Home() {
 
         <div className="my-8">
           <h3 className="text-xl font-bold">Rekomendasi Produk</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 xl:gap-8 my-4">
-            {productLoading ? (
-              <div>Loading...</div>
-            ) : (
-              <CardProduct productData={productData} />
-            )}
-          </div>
+          <CardsLayout>
+            {products?.map((product) => (
+              <CardProduct
+                key={product.id}
+                product={product}
+                productHref={`/products/${product.id}`}
+              />
+            ))}
+          </CardsLayout>
         </div>
       </section>
     </main>

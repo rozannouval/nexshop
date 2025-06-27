@@ -22,7 +22,7 @@ export const useFetchProductById = (id) => {
   });
 };
 
-export const useSearchProduct = (q) => {
+export const useSearchProducts = (q) => {
   return useQuery({
     queryKey: ["search", q],
     queryFn: async () => {
@@ -30,6 +30,16 @@ export const useSearchProduct = (q) => {
       const res = await axiosInstance.get(`/products/search?q=${q}`);
       return res.data;
     },
-    enabled: !!q
+    enabled: !!q,
+  });
+};
+
+export const useCategoryProducts = (categoryName) => {
+  return useQuery({
+    queryKey: ["category", categoryName],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/products/category/${categoryName}`);
+      return res.data;
+    },
   });
 };
