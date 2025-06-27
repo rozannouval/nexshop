@@ -15,6 +15,7 @@ import { useRef } from "react";
 import Loading from "./loading";
 import Link from "next/link";
 import CardsLayout from "@/components/Cards/CardsLayout";
+import LoadError from "../components/Errors/LoadError";
 
 const categoryOption = [
   {
@@ -60,15 +61,10 @@ export default function Home() {
 
   if (isPageLoading) return <Loading />;
 
-  if (productError || bannerError)
-    return (
-      <div className="text-center text-red-500 py-10">
-        <p>Mohon maaf, data gagal dimuat. Silahkan coba lagi.</p>
-      </div>
-    );
+  if (productError || bannerError) return <LoadError />;
 
   return (
-    <main className="min-h-[100dvh] container mx-auto flex flex-col p-4 md:p-8">
+    <main className="min-h-[30rem] md:min-h-[75dvh] container mx-auto flex flex-col p-4 md:p-8">
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
