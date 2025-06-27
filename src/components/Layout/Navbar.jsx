@@ -37,8 +37,8 @@ const Navbar = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <nav className="md:sticky top-0 left-0 z-[99] w-full p-4 bg-white font-medium max-md:gap-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="md:sticky top-0 left-0 z-[99] w-full p-4 bg-white font-medium">
+      <div className="container mx-auto flex justify-between items-center max-md:gap-2">
         <div className="block xl:hidden mr-2">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
