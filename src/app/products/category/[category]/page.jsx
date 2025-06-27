@@ -23,8 +23,8 @@ const CategoryProductsPage = () => {
   if (!categories || categories.length === 0) return <ProductNotFound />;
 
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[75dvh]">
-      <h3 className="text-2xl font-medium">
+    <main className="container mx-auto p-4 md:p-8 min-h-[78dvh]">
+      <h3 className="text-lg md:text-2xl font-medium">
         Kategori <span className="font-bold capitalize">{category}</span>:
       </h3>
       <CardsLayout>

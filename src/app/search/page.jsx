@@ -23,8 +23,8 @@ function SearchPage() {
   if (!products || products.length === 0) return <ProductNotFound />;
 
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[80dvh] ">
-      <h3 className="text-2xl font-medium ">Hasil dari pencarian anda:</h3>
+    <main className="container mx-auto p-4 md:p-8 min-h-[35rem] md:min-h-[78dvh] ">
+      <h3 className="text-xl md:text-2xl font-medium ">Hasil dari pencarian anda:</h3>
       <CardsLayout>
         {products?.map((product) => (
           <CardProduct

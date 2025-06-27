@@ -7,7 +7,7 @@ import React from 'react'
 const LoadError = () => {
   const router = useRouter()
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[30rem] md:min-h-[75dvh] flex flex-col justify-center items-center gap-3 text-center">
+    <main className="container mx-auto p-4 md:p-8 min-h-[35rem] md:min-h-[75dvh] flex flex-col justify-center items-center gap-3 text-center">
         <CircleX className="size-28 md:size-36" />
         <h4 className="font-medium text-xl md:text-2xl">
           Terjadi kesalahan saat memuat data

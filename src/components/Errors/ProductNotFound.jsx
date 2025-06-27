@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const ProductNotFound = () => {
   const router = useRouter();
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[80dvh] flex flex-col justify-center items-center gap-4 text-center">
+    <main className="container mx-auto p-4 md:p-8 min-h-[35rem] md:min-h-[78dvh] flex flex-col justify-center items-center gap-4 text-center">
       <SearchX className="size-32 md:size-40" />
       <h4 className="font-medium text-2xl md:text-3xl">
         Produk tidak ditemukan!

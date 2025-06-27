@@ -64,7 +64,7 @@ export default function Home() {
   if (productError || bannerError) return <LoadError />;
 
   return (
-    <main className="min-h-[30rem] md:min-h-[75dvh] container mx-auto flex flex-col p-4 md:p-8">
+    <main className="min-h-[35rem] md:min-h-[78dvh] container mx-auto flex flex-col p-4 md:p-8">
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
