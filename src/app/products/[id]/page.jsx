@@ -52,7 +52,7 @@ function ProductPage() {
       </Breadcrumb>
       <div className="flex flex-col lg:flex-row gap-y-2 gap-x-16">
         <img
-          src={product.image}
+          src={product.image || "/image-not-available.png"}
           alt={product.name}
           className="w-96 h-96 hidden lg:block object-cover"
         />

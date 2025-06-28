@@ -9,7 +9,7 @@ const CardProduct = ({ product, productHref }) => {
     >
       <div className="aspect-[1/1] p-1 overflow-hidden w-full rounded-t-xl flex justify-center items-center">
         <img
-          src={product.image}
+          src={product.image || "/image-not-available.png"}
           alt={product.name}
           className="w-full h-full object-contain rounded-t-xl"
         />
