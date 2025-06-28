@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import QueryProvider from "@/providers/QueryProvider";
 import Footer from "@/components/Layout/Footer";
+import { Toaster } from "sonner";
 
 const getPoppins = Poppins({
   variable: "--font-poppins",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <QueryProvider>
           <Navbar />
           {children}
+          <Toaster richColors position="top-right" />
           <Footer />
         </QueryProvider>
       </body>

@@ -24,7 +24,7 @@ function ProductPage() {
 
   return (
     <PageLayout>
-      <Breadcrumb className="font-medium mb-2">
+      <Breadcrumb className="font-medium mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
