@@ -1,13 +1,14 @@
 "use client";
 
 import CardProduct from "@/components/Cards/CardProduct";
-import { useSearchProducts } from "@/features/useProducts";
+import { useSearchProducts } from "@/features/products/useProducts";
 import { useSearchParams } from "next/navigation";
 import Loading from "../loading";
 import NotFound from "../not-found";
 import CardsLayout from "@/components/Cards/CardsLayout";
 import LoadError from "@/components/Errors/LoadError";
 import ProductNotFound from "@/components/Errors/ProductNotFound";
+import PageLayout from "@/components/Layout/PageLayout";
 
 function SearchPage() {
   const searchParams = useSearchParams();
@@ -23,8 +24,10 @@ function SearchPage() {
   if (!products || products.length === 0) return <ProductNotFound />;
 
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[35rem] md:min-h-[78dvh] ">
-      <h3 className="text-xl md:text-2xl font-medium ">Hasil dari pencarian anda:</h3>
+    <PageLayout>
+      <h3 className="text-xl md:text-2xl font-medium">
+        Hasil dari pencarian anda:
+      </h3>
       <CardsLayout>
         {products?.map((product) => (
           <CardProduct
@@ -34,7 +37,7 @@ function SearchPage() {
           />
         ))}
       </CardsLayout>
-    </main>
+    </PageLayout>
   );
 }
 

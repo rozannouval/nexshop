@@ -1,5 +1,6 @@
 "use client";
 
+import PageLayout from "@/components/Layout/PageLayout";
 import { ArrowLeft, FileX } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +12,7 @@ function NotFound() {
   };
 
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[35rem] md:min-h-[75dvh] flex flex-col justify-center items-center gap-3 text-center">
+    <PageLayout className="justify-center items-center gap-3 text-center">
       <FileX className="size-32 md:size-40 text-stone-700" />
       <h2 className="text-center font-bold text-xl md:text-3xl text-stone-700">
         Maaf, Halaman Tidak Ditemukan
@@ -26,7 +27,7 @@ function NotFound() {
       >
         <ArrowLeft className="-ml-1 size-4 md:size-5" /> Kembali
       </button>
-    </main>
+    </PageLayout>
   );
 }
 

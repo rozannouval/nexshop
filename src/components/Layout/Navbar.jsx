@@ -55,7 +55,7 @@ const Navbar = () => {
                     <Link
                       key={index}
                       href={menu.linkHref}
-                      onClick={handleClose}
+                      onClick={() => handleClose()}
                       className="text-lg font-medium hover:bg-stone-100 p-2"
                     >
                       {menu.linkTitle}

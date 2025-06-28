@@ -2,6 +2,7 @@
 
 import Loading from "@/app/loading";
 import LoadError from "@/components/Errors/LoadError";
+import PageLayout from "@/components/Layout/PageLayout";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,7 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { useFetchProductById } from "@/features/useProducts";
+import { useFetchProductById } from "@/features/products/useProducts";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -22,7 +23,7 @@ function ProductPage() {
   if (isError) return <LoadError />;
 
   return (
-    <main className="container mx-auto p-4 md:p-8 min-h-[35rem] md:min-h-[78dvh]">
+    <PageLayout>
       <Breadcrumb className="font-medium mb-2">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -63,7 +64,7 @@ function ProductPage() {
           <p className="text-sm md:text-lg text-justify">{product.description}</p>
         </div>
       </div>
-    </main>
+    </PageLayout>
   );
 }
 

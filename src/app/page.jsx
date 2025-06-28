@@ -9,13 +9,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useFetchBanners } from "@/features/useFetchBanners";
-import { useFetchProducts } from "@/features/useProducts";
+import { useFetchProducts } from "@/features/products/useProducts";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import Loading from "./loading";
 import Link from "next/link";
 import CardsLayout from "@/components/Cards/CardsLayout";
 import LoadError from "../components/Errors/LoadError";
+import PageLayout from "@/components/Layout/PageLayout";
 
 const categoryOption = [
   {
@@ -64,7 +65,7 @@ export default function Home() {
   if (productError || bannerError) return <LoadError />;
 
   return (
-    <main className="min-h-[35rem] md:min-h-[78dvh] container mx-auto flex flex-col p-4 md:p-8">
+    <PageLayout>
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
@@ -123,6 +124,6 @@ export default function Home() {
           </CardsLayout>
         </div>
       </section>
-    </main>
+    </PageLayout>
   );
 }
