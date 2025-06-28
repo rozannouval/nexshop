@@ -54,14 +54,14 @@ function ProductPage() {
         <img
           src={product.image}
           alt={product.name}
-          className="w-96 h-96 hidden lg:block"
+          className="w-96 h-96 hidden lg:block object-cover"
         />
         <div className="w-full lg:hidden flex justify-center">
-          <img src={product.image} alt={product.name} className="w-96 h-96" />
+          <img src={product.image} alt={product.name} className="w-96 h-96 object-cover" />
         </div>
         <div className="md:py-8 md:px-4 flex flex-col gap-4">
           <h2 className="font-medium text-lg md:text-2xl">{product.name}</h2>
-          <p className="text-sm md:text-lg text-justify">{product.description}</p>
+          <p className="text-sm md:text-lg text-justify whitespace-pre-line">{product.description}</p>
         </div>
       </div>
     </PageLayout>

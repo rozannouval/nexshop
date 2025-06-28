@@ -90,7 +90,7 @@ function RegisterPage() {
                 disabled={isPending}
                 className="p-2 font-medium text-center bg-stone-800 text-white hover:opacity-80 transition-all duration-300 rounded-md cursor-pointer w-full"
               >
-                {isPending ? "Akun sedang disubmit..." : "Submit"}
+                {isPending ? "Akun sedang dibuat..." : "Submit"}
               </button>
             </div>
           </form>

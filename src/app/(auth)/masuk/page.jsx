@@ -63,9 +63,9 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="p-2 font-medium text-center bg-stone-800 text-white rounded-md cursor-pointer"
+                className="p-2 font-medium text-center bg-stone-800 text-white rounded-md cursor-pointer hover:opacity-80 transition-all"
               >
-                {isPending ? "Logging in..." : "Login"}
+                {isPending ? "Sedang masuk..." : "Masuk"}
               </button>
               <Link
                 href="/daftar"
